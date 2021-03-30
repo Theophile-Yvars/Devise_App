@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DeviseConvert</string>
+    <string name="titre">Devise App</string>
+    <string name="descrition">Pour vous faciliter la convertion de votre budget, à l internationnal</string>
+</resources>
