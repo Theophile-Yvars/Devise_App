@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.deviseconvert.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_deviceFragment"
+            app:destination="@id/deviceFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_tauxFragment"
+            app:destination="@id/tauxFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_convertionFragment"
+            app:destination="@id/convertionFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_burreauFragment"
+            app:destination="@id/burreauFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deviceFragment"
+        android:name="com.example.deviseconvert.DeviceFragment"
+        android:label="fragment_device"
+        tools:layout="@layout/fragment_device" />
+    <fragment
+        android:id="@+id/tauxFragment"
+        android:name="com.example.deviseconvert.TauxFragment"
+        android:label="fragment_taux"
+        tools:layout="@layout/fragment_taux" />
+    <fragment
+        android:id="@+id/convertionFragment"
+        android:name="com.example.deviseconvert.ConvertionFragment"
+        android:label="fragment_convertion"
+        tools:layout="@layout/fragment_convertion" />
+    <fragment
+        android:id="@+id/burreauFragment"
+        android:name="com.example.deviseconvert.BurreauFragment"
+        android:label="fragment_burreau"
+        tools:layout="@layout/fragment_burreau" />
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.example.deviseconvert.InformationFragment"
+        android:label="fragment_information"
+        tools:layout="@layout/fragment_information" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.deviseconvert.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+</navigation>
