@@ -11,5 +11,17 @@
     <string name="ville">Ville : </string>
     <string name="button_burreau_recherche">Rechercher</string>
     <string name="texte_burreau">Indiquer la ville</string>
+    <string name="text_information">"Vous trouverez plusieurs fonctions dans cette application :
+
+        1 Devise : Donne les devise du pays cible.
+
+        2 Taux : Donne le taux de convertion entre deux devises.
+
+        3 Convertion : Converti un montant d'une devise à une autre.
+
+        4 Bureau de change : Donne la géolocalistion des bureaux de change d'une ville."</string>
+    <string name="button_inforamtion">Liste des conversions déjà effectué</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

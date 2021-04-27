@@ -81,7 +81,18 @@
         android:id="@+id/informationFragment"
         android:name="com.example.deviseconvert.InformationFragment"
         android:label="fragment_information"
-        tools:layout="@layout/fragment_information" />
+        tools:layout="@layout/fragment_information" >
+        <action
+            android:id="@+id/action_informationFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_informationFragment_to_listOperationFragment"
+            app:destination="@id/listOperationFragment"
+            app:enterAnim="@anim/slide_in_rigth"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.deviseconvert.MainFragment"
@@ -102,4 +113,9 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/listOperationFragment"
+        android:name="com.example.deviseconvert.ListOperationFragment"
+        android:label="fragment_list_operation"
+        tools:layout="@layout/fragment_list_operation" />
 </navigation>

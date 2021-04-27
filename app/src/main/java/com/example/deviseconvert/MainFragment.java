@@ -25,8 +25,8 @@ public class MainFragment extends Fragment {
 
         Log.i("MainFragments","Initialisation");
 
-        ImageButton buttonMenu = view.findViewById(R.id.buttonMenuBurreau);
-        ImageButton buttonInformation = view.findViewById(R.id.buttonInformationMenu);
+        ImageButton buttonMenu = view.findViewById(R.id.buttonMenu);
+        ImageButton buttonInformation = view.findViewById(R.id.buttonInformation);
 
         buttonMenu.setOnClickListener(v -> {
             NavController navController = NavHostFragment.findNavController(this);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -42,7 +42,7 @@
                     android:layout_weight="1">
 
                     <ImageButton
-                        android:id="@+id/buttonInformationMenu"
+                        android:id="@+id/buttonInformation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,7 +58,7 @@
                     android:layout_weight="1">
 
                     <ImageButton
-                        android:id="@+id/buttonMenuBurreau"
+                        android:id="@+id/buttonMenu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"

@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
@@ -28,7 +27,7 @@ public class MenuFragment extends Fragment {
         Button button2 = view.findViewById(R.id.button2Menu);
         Button button3 = view.findViewById(R.id.button3Menu);
         Button button4 = view.findViewById(R.id.button4Menu);
-        ImageButton buttonInformation = view.findViewById(R.id.buttonInformationMenu);
+        ImageButton buttonInformation = view.findViewById(R.id.buttonInformation);
 
         button1.setOnClickListener(v -> {
             NavController navController = NavHostFragment.findNavController(this);

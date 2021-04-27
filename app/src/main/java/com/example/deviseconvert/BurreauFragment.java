@@ -35,8 +35,8 @@ public class BurreauFragment extends Fragment {
         input = (EditText) view.findViewById(R.id.inputVille1);
 
         Button buttonBurreau = view.findViewById(R.id.buttonBurreau);
-        ImageButton buttonMenu = view.findViewById(R.id.buttonMenuBurreau);
-        ImageButton buttonInformation = view.findViewById(R.id.buttonInformationMenu);
+        ImageButton buttonMenu = view.findViewById(R.id.buttonMenu);
+        ImageButton buttonInformation = view.findViewById(R.id.buttonInformation);
 
         buttonBurreau.setOnClickListener(this::onClick);
 

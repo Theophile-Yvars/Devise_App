@@ -46,7 +46,7 @@
                         android:layout_weight="1">
 
                         <ImageButton
-                            android:id="@+id/buttonInformationMenu"
+                            android:id="@+id/buttonInformation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +62,7 @@
                         android:layout_weight="1">
 
                         <ImageButton
-                            android:id="@+id/buttonMenuBurreau"
+                            android:id="@+id/buttonMenu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
