@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MenuFragment extends Fragment {
     public MenuFragment() {
@@ -27,6 +28,7 @@ public class MenuFragment extends Fragment {
         Button button2 = view.findViewById(R.id.button2Menu);
         Button button3 = view.findViewById(R.id.button3Menu);
         Button button4 = view.findViewById(R.id.button4Menu);
+        ImageButton buttonInformation = view.findViewById(R.id.buttonInformationMenu);
 
         button1.setOnClickListener(v -> {
             NavController navController = NavHostFragment.findNavController(this);
@@ -46,6 +48,11 @@ public class MenuFragment extends Fragment {
         button4.setOnClickListener(v -> {
             NavController navController = NavHostFragment.findNavController(this);
             navController.navigate(R.id.action_menuFragment_to_burreauFragment);
+        });
+
+        buttonInformation.setOnClickListener(v -> {
+            NavController navController = NavHostFragment.findNavController(this);
+            navController.navigate(R.id.action_menuFragment_to_informationFragment);
         });
 
         return view;

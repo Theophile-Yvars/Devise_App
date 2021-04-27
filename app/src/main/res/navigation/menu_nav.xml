@@ -38,6 +38,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_menuFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
     </fragment>
     <fragment
         android:id="@+id/deviceFragment"
@@ -58,7 +61,22 @@
         android:id="@+id/burreauFragment"
         android:name="com.example.deviseconvert.BurreauFragment"
         android:label="fragment_burreau"
-        tools:layout="@layout/fragment_burreau" />
+        tools:layout="@layout/fragment_burreau" >
+        <action
+            android:id="@+id/action_burreauFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:enterAnim="@anim/slide_in_rigth"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_burreauFragment_to_informationFragment"
+            app:destination="@id/informationFragment"
+            app:enterAnim="@anim/slide_in_rigth"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/informationFragment"
         android:name="com.example.deviseconvert.InformationFragment"
