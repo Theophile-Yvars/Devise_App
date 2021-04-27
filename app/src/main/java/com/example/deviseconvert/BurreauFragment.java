@@ -1,6 +1,7 @@
 package com.example.deviseconvert;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -31,6 +32,8 @@ public class BurreauFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_burreau, container, false);
 
+        input = (EditText) view.findViewById(R.id.inputVille1);
+
         Button buttonBurreau = view.findViewById(R.id.buttonBurreau);
         ImageButton buttonMenu = view.findViewById(R.id.buttonMenuBurreau);
         ImageButton buttonInformation = view.findViewById(R.id.buttonInformationMenu);
@@ -52,20 +55,30 @@ public class BurreauFragment extends Fragment {
 
     private void onClick(View v) {
         ville = new String();
-        input = v.findViewById(R.id.inputVille1);
+        ville = null;
 
         // Recuperation du nom de la ville
         try {
             ville = input.getText().toString();
             Log.i("Nom de ville", ville);
+            if(ville.length() == 0){
+                Snackbar mySnackbar = Snackbar.make(v, R.string.burreau_erreur, Snackbar.LENGTH_LONG);
+                mySnackbar.show();
+            }else {
 
-            Intent intent = new Intent(v.getContext(), BurreauFragment.class);
-            intent.putExtra("value", ville);
+                // Adresse cible
+                String url="https://www.google.com/maps/search/bureau+de+change+" + ville;
+                Log.i("Requette : ", url);
 
-            startActivity(intent);
+                // Intent implicite. Va à l'adresse cible
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+
+                intent.setPackage("com.google.android.apps.maps");
+                startActivity(intent);
+            }
         }catch (Exception e){
-            Snackbar mySnackbar = Snackbar.make(v, R.string.burreau_erreur, Snackbar.LENGTH_LONG);
-            mySnackbar.show();
+            /*Snackbar mySnackbar = Snackbar.make(v, R.string.burreau_erreur, Snackbar.LENGTH_LONG);
+            mySnackbar.show();*/
         }
     }
 }
