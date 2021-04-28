@@ -34,9 +34,6 @@ API : https://www.currencyconverterapi.com/docs
 public class ConvertionFragment extends Fragment implements Serializable {
     String apiDevises = new String();
     String key = "996cb33723dd35d455fb";
-    //String target = new String();
-    //String format = new String();
-    //String quantity = new String();
 
     StringBuilder allDevise = new StringBuilder();
 
@@ -53,10 +50,6 @@ public class ConvertionFragment extends Fragment implements Serializable {
     EditText input;
     EditText output;
 
-    ArrayAdapter<CharSequence> adapterListDevice;
-
-    ListView listView1;
-    ListView listView2;
 
     public ConvertionFragment() {
         // Required empty public constructor
@@ -98,11 +91,10 @@ public class ConvertionFragment extends Fragment implements Serializable {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                // yourMethod();
                 Log.i("Devise", String.valueOf(allDevise));
                 adapterFunc(view);
             }
-        }, 2000);   //5 seconds
+        }, 2000);   //2 seconds
 
         buttonConvert.setOnClickListener(v -> {
             AsyncTask<Void,Void,String> task = new AsyncTask<Void, Void, String>() {
