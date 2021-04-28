@@ -3,6 +3,7 @@ package com.example.deviseconvert;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -16,6 +17,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -23,7 +29,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 
 /*
@@ -49,6 +59,7 @@ public class ConvertionFragment extends Fragment implements Serializable {
     EditText input;
     EditText output;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public ConvertionFragment() {
         // Required empty public constructor
@@ -182,7 +193,7 @@ public class ConvertionFragment extends Fragment implements Serializable {
             coeffFloat = Float.parseFloat(coeff);
             Log.i("Float", String.valueOf(coeffFloat));
 
-            convert(deviseDestination);
+            convert(deviseDestination,deviseSource,coeffFloat);
 
         } catch (Exception e) {
             Log.e("DEMO", e.toString());
@@ -213,7 +224,7 @@ public class ConvertionFragment extends Fragment implements Serializable {
         startSpinner();
     }
 
-    void convert(String affichageDestination){
+    void convert(String affichageDestination, String afiichageSource, float coeffFloat){
         float resultat;
 
         try{
@@ -226,13 +237,48 @@ public class ConvertionFragment extends Fragment implements Serializable {
              */
             final float inputValue = Float.parseFloat(inputStr);
 
-            resultat = coeffFloat * inputValue;
+            resultat = this.coeffFloat * inputValue;
 
             output.setText(String.valueOf(resultat) + " " + affichageDestination);
+
+            bdd(affichageDestination,afiichageSource,resultat,inputValue);
 
         } catch(Exception e){
             output.setText("Invalid input");
         }
+    }
+
+    private void bdd(String affichageDestination, String afiichageSource, float resultat,float inputValue) {
+        // Create a new user with a first and last name
+
+        Date now = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/YYYY HH:mm");
+        String resultDate = formatter.format(now);
+
+        String stockage = String.valueOf(inputValue) + " " + afiichageSource + " -> " + affichageDestination + " : " + String.valueOf(resultat);
+
+        HashMap<String, Object> user = new HashMap<>();
+        user.put(resultDate, stockage);
+
+        String TAG = "BDD";
+
+        Log.i(TAG,"Enregistremenent");
+
+// Add a new document with a generated ID
+        db.collection("users")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
     }
 
     String fetchDevise() {

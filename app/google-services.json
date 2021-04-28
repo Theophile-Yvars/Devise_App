@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "297691841670",
+    "project_id": "deviseapp-668a2",
+    "storage_bucket": "deviseapp-668a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297691841670:android:c0643fd391cd8f164a3d07",
+        "android_client_info": {
+          "package_name": "com.example.deviseconvert"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297691841670-n35b4jppkg0rond0bqn95gf2n1onmb4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIBf0_bn5poSkJPS-o8bkRzkfDc6kINKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297691841670-n35b4jppkg0rond0bqn95gf2n1onmb4t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
