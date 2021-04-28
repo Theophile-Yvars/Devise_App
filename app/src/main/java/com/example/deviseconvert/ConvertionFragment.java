@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 
 import org.json.JSONObject;
@@ -61,10 +60,10 @@ public class ConvertionFragment extends Fragment implements Serializable {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_convertion, container, false);
 
-        Button buttonConvert = view.findViewById(R.id.buttonConvert);
+        Button buttonConvert = view.findViewById(R.id.buttonTaux);
 
         input = view.findViewById(R.id.inputMontant);
-        output = view.findViewById(R.id.outputMontant);
+        output = view.findViewById(R.id.outputTaux);
 
          /*
         déclaration du tableau d'item pour dans les spinner

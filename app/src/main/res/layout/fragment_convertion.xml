@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/buttonConvert"
+            android:id="@+id/buttonTaux"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.467"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/outputMontant" />
+            app:layout_constraintTop_toBottomOf="@+id/outputTaux" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -74,7 +74,7 @@
             app:layout_constraintStart_toStartOf="@+id/linearLayout" />
 
         <EditText
-            android:id="@+id/outputMontant"
+            android:id="@+id/outputTaux"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
