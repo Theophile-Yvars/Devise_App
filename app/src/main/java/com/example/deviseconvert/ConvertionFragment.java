@@ -258,7 +258,10 @@ public class ConvertionFragment extends Fragment implements Serializable {
         String stockage = String.valueOf(inputValue) + " " + afiichageSource + " -> " + affichageDestination + " : " + String.valueOf(resultat);
 
         HashMap<String, Object> user = new HashMap<>();
-        user.put(resultDate, stockage);
+        //user.put("info", stockage + " : " + resultDate);
+        user.put("info", stockage);
+        user.put("date", resultDate);
+
 
         String TAG = "BDD";
 
