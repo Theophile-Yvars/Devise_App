@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,9 +34,9 @@ API : https://www.currencyconverterapi.com/docs
 public class ConvertionFragment extends Fragment implements Serializable {
     String apiDevises = new String();
     String key = "996cb33723dd35d455fb";
-    String target = new String();
-    String format = new String();
-    String quantity = new String();
+    //String target = new String();
+    //String format = new String();
+    //String quantity = new String();
 
     StringBuilder allDevise = new StringBuilder();
 
@@ -44,6 +45,10 @@ public class ConvertionFragment extends Fragment implements Serializable {
 
     Spinner spinnerSource;
     Spinner spinnerDestination;
+
+    int sourceIndice;
+    int destinationIndice;
+    float coeffFloat;
 
     EditText input;
     EditText output;
@@ -99,23 +104,11 @@ public class ConvertionFragment extends Fragment implements Serializable {
             }
         }, 2000);   //5 seconds
 
-
-
-     //   ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.choix_Aop, android.R.layout.simple_spinner_item);
-     //   adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        /*
-        Attribution du tableau au spinner
-         */
-     //   spinnerSource.setAdapter(adapter);
-     //   spinnerDestination.setAdapter(adapter);
-
         buttonConvert.setOnClickListener(v -> {
             AsyncTask<Void,Void,String> task = new AsyncTask<Void, Void, String>() {
                 @Override
                 protected String doInBackground(Void... voids) {
-                    //return fetchAllMessage();
-                    return null;
+                    return fetchAffichage();
                 }
                 @Override
                 protected void onPostExecute(String responseContent) {
@@ -128,8 +121,85 @@ public class ConvertionFragment extends Fragment implements Serializable {
             };
             task.execute();
         });
-        return view;
 
+        return view;
+    }
+
+    private void startSpinner() {
+
+        // When user select a List-Item.
+        this.spinnerSource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //onItemSelected(parent, view, position, id);
+                sourceIndice = position;
+                Log.i("Source", String.valueOf(sourceIndice));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        // When user select a List-Item.
+        this.spinnerDestination.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //onItemSelected(parent, view, position, id);
+                destinationIndice = position;
+                Log.i("Destination", String.valueOf(destinationIndice));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private String fetchAffichage() {
+        String d = String.valueOf(allDevise);
+        String[] array = d.split(" ");
+
+        String deviseSource = array[sourceIndice];
+        String deviseDestination = array[destinationIndice];
+        String coeff;
+
+        apiDevises = "https://free.currconv.com/api/v7/convert?apiKey=" + key +"&q="+deviseSource+"_"+deviseDestination+"&compact=y";
+        //https://free.currconv.com/api/v7/convert?apiKey=do-not-use-this-key&q=USD_PHP&compact=y
+        Log.i("Resquet",apiDevises);
+        try{
+            URL url = new URL(apiDevises);
+            InputStream inputStream = url.openConnection().getInputStream();
+            StringBuilder responseContent = new StringBuilder();
+            //StringBuilder test = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+                String line;
+                line = reader.readLine(); // Je recupere un bloc String correspondant au JSON de l'API
+                file = new JSONObject(line); // Je le convertis en JSON pour pouvoir le manipuler
+            }
+            Log.i("Conversion", "Messages = \n" + file);
+
+            JSONObject test = file.getJSONObject(deviseSource+"_"+deviseDestination); // Je recupere le Json dans la cle results. Ce qui correspond à toutes les valeurs.
+            coeff = test.getString("val");
+
+            Log.i("val",coeff);
+            coeffFloat = Float.parseFloat(coeff);
+            Log.i("Float", String.valueOf(coeffFloat));
+
+            convert(deviseDestination);
+
+        } catch (Exception e) {
+            Log.e("DEMO", e.toString());
+            e.printStackTrace();
+        }
+
+
+        return null;
     }
 
     void adapterFunc(View v){
@@ -148,9 +218,13 @@ public class ConvertionFragment extends Fragment implements Serializable {
 
         this.spinnerSource.setAdapter(adapter);
         this.spinnerDestination.setAdapter(adapter);
+
+        startSpinner();
     }
 
-    void convert(){
+    void convert(String affichageDestination){
+        float resultat;
+
         try{
              /*
             Recuperation de la valeur saisie, en String
@@ -160,6 +234,11 @@ public class ConvertionFragment extends Fragment implements Serializable {
             Convertion de ce string en float
              */
             final float inputValue = Float.parseFloat(inputStr);
+
+            resultat = coeffFloat * inputValue;
+
+            output.setText(String.valueOf(resultat) + " " + affichageDestination);
+
         } catch(Exception e){
             output.setText("Invalid input");
         }
@@ -167,9 +246,9 @@ public class ConvertionFragment extends Fragment implements Serializable {
 
     String fetchDevise() {
         try {
-            target = "EUR";
-            format = "THB";
-            quantity = "12";
+            //target = "EUR";
+            //format = "THB";
+            //quantity = "12";
 
             apiDevises = "https://free.currconv.com/api/v7/currencies?apiKey="+key;
 
