@@ -1,5 +1,6 @@
 package com.example.deviseconvert;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -35,6 +36,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import android.content.Context;
+
+import static android.content.Context.MODE_PRIVATE;
+
 
 /*
 API : https://www.currencyconverterapi.com/docs
@@ -59,7 +64,15 @@ public class ConvertionFragment extends Fragment implements Serializable {
     EditText input;
     EditText output;
 
+    float resultat;
+
+    String convertSerialise = "ficConvert";
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+
+    private Context mContext;
 
     public ConvertionFragment() {
         // Required empty public constructor
@@ -75,6 +88,15 @@ public class ConvertionFragment extends Fragment implements Serializable {
 
         input = view.findViewById(R.id.inputMontant);
         output = view.findViewById(R.id.outputTaux);
+
+        loadData();
+
+        /*
+        if(Serializer.deserialize(convertSerialise,getContext()) != null){
+            resultat = (float)Serializer.deserialize(convertSerialise,getContext());
+            output.setText(String.valueOf(resultat));
+        }
+        */
 
          /*
         déclaration du tableau d'item pour dans les spinner
@@ -225,8 +247,6 @@ public class ConvertionFragment extends Fragment implements Serializable {
     }
 
     void convert(String affichageDestination, String afiichageSource, float coeffFloat){
-        float resultat;
-
         try{
              /*
             Recuperation de la valeur saisie, en String
@@ -284,6 +304,10 @@ public class ConvertionFragment extends Fragment implements Serializable {
                 });
     }
 
+    /**
+     *
+     * @return
+     */
     String fetchDevise() {
         try {
             //target = "EUR";
@@ -320,5 +344,29 @@ public class ConvertionFragment extends Fragment implements Serializable {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void loadData(){
+        mContext = getContext();
+        try {
+            SharedPreferences settings = mContext.getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+            resultat = settings.getFloat("Res",resultat);
+            output.setText(String.valueOf(resultat));
+        }catch (Exception e){
+            Log.i("loadData","Rien en mémoire");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mContext = getContext();
+        SharedPreferences settings = mContext.getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("Res", resultat);
+
+        // Commit the edits!
+        editor.commit();
     }
 }

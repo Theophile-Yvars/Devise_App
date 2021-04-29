@@ -1,5 +1,7 @@
 package com.example.deviseconvert;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -24,6 +26,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Iterator;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class DeviceFragment extends Fragment {
     String apiDevises = new String();
     String key = "996cb33723dd35d455fb";
@@ -36,10 +40,15 @@ public class DeviceFragment extends Fragment {
     StringBuilder allCountry = new StringBuilder();
 
     JSONObject file;
+    String memoData = null;
 
     int countryIndice;
 
     EditText output;
+
+    Context mContext;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
 
     public DeviceFragment() {
         // Required empty public constructor
@@ -86,6 +95,7 @@ public class DeviceFragment extends Fragment {
 
     private void affichage() {
         output.setText(arrayDevice[countryIndice]);
+        memoData = arrayDevice[countryIndice];
     }
 
     public void adapterFunc(View v) {
@@ -107,6 +117,7 @@ public class DeviceFragment extends Fragment {
         this.spinnerPay.setAdapter(adapter);
 
         startSpinner();
+        loadData();
     }
 
     public void startSpinner() {
@@ -164,5 +175,35 @@ public class DeviceFragment extends Fragment {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void loadData(){
+        mContext = getContext();
+        String val = null;
+        Log.i("DATA","load");
+        try {
+            SharedPreferences settings = mContext.getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+            val = settings.getString("dev",val);
+            Log.i("DATA",val);
+            output.setText(val);
+        }catch (Exception e){
+            Log.i("loadData","Rien en mémoire");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mContext = getContext();
+        SharedPreferences settings = mContext.getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        if(memoData != null){
+            editor.putString("dev", memoData);
+            Log.i("SAVE",memoData);
+        }
+        // Commit the edits!
+        editor.commit();
     }
 }

@@ -1,5 +1,7 @@
 package com.example.deviseconvert;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -24,6 +26,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Iterator;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class TauxFragment extends Fragment {
     String apiDevises = new String();
     String key = "996cb33723dd35d455fb";
@@ -38,9 +42,13 @@ public class TauxFragment extends Fragment {
 
     int sourceIndice;
     int destinationIndice;
-    float coeffFloat;
+    float coeffFloat = -1;
 
     EditText output;
+
+    Context mContext;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
 
     public TauxFragment() {
         // Required empty public constructor
@@ -56,6 +64,7 @@ public class TauxFragment extends Fragment {
 
 
         output = view.findViewById(R.id.outputTaux);
+        loadData();
 
          /*
         déclaration du tableau d'item pour dans les spinner
@@ -242,5 +251,35 @@ public class TauxFragment extends Fragment {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    public void loadData(){
+        mContext = getContext();
+        Log.i("DATA","load");
+        try {
+            SharedPreferences settings = mContext.getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+            coeffFloat = settings.getFloat("ta",coeffFloat);
+            Log.i("DATA", String.valueOf(coeffFloat));
+            output.setText(String.valueOf(coeffFloat));
+        }catch (Exception e){
+            Log.i("loadData","Rien en mémoire");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mContext = getContext();
+        SharedPreferences settings = mContext.getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        if(coeffFloat != -1){
+            editor.putFloat("ta", coeffFloat);
+            Log.i("SAVE", String.valueOf(coeffFloat));
+        }
+        // Commit the edits!
+        editor.commit();
     }
 }
