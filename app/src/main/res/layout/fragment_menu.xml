@@ -7,9 +7,9 @@
     tools:context=".MenuFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -62,9 +62,9 @@
                         android:layout_weight="1">
 
                         <ImageButton
-                            android:background="@color/teal_700"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@color/teal_700"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +112,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
                         android:text="@string/Activity1"
+                        android:textSize="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -132,6 +133,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
                         android:text="@string/Activity2"
+                        android:textSize="19dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -160,6 +162,7 @@
                         android:layout_marginRight="8dp"
                         android:layout_weight="1"
                         android:text="@string/Activity3"
+                        android:textSize="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -180,6 +183,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:text="@string/Activity4"
+                        android:textSize="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -196,17 +200,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="@string/QuestionMenu"
+            android:textColor="@color/teal_700"
             android:textSize="40dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.933" />
+            app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

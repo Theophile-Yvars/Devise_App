@@ -6,7 +6,7 @@
     <string name="Activity1">Taux</string>
     <string name="Activity2">Convertion</string>
     <string name="Activity3">Devise</string>
-    <string name="Activity4">Burreaux de change</string>
+    <string name="Activity4">Bureaux de change</string>
     <string name="burreau_erreur">Erreur : Pas de nom de ville</string>
     <string name="ville">Ville : </string>
     <string name="button_burreau_recherche">Rechercher</string>

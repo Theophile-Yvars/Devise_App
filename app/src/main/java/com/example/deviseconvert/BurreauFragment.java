@@ -40,16 +40,6 @@ public class BurreauFragment extends Fragment {
 
         buttonBurreau.setOnClickListener(this::onClick);
 
-        buttonMenu.setOnClickListener(v -> {
-            NavController navController = NavHostFragment.findNavController(this);
-            navController.navigate(R.id.action_burreauFragment_to_menuFragment);
-        });
-
-        buttonInformation.setOnClickListener(v -> {
-            NavController navController = NavHostFragment.findNavController(this);
-            navController.navigate(R.id.action_burreauFragment_to_informationFragment);
-        });
-
         return view;
     }
 

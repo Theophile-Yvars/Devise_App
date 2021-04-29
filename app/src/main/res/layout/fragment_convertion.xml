@@ -12,8 +12,9 @@
 
         <Button
             android:id="@+id/buttonTaux"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="188dp"
+            android:layout_height="90dp"
+            android:textSize="20dp"
             android:layout_marginTop="100dp"
             android:text="@string/button_convert"
             app:layout_constraintEnd_toEndOf="parent"
