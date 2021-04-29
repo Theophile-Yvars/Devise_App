@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Devise_App</string>
+    <string name="QuestionMenu">What do you want to do?</string>
+    <string name="descrition">"To facilitate the conversion of your budget, internationally "</string>
+    <string name="Activity1">Rate</string>
+    <string name="Activity2">"Conversion "</string>
+    <string name="titre">Devise App</string>
+    <string name="Activity3">Motto</string>
+    <string name="Activity4">"Currency exchange office "</string>
+    <string name="burreau_erreur">"Error: No city name "</string>
+    <string name="ville">"City : "</string>
+    <string name="button_burreau_recherche">"Search "</string>
+    <string name="texte_burreau">"Indicate the city "</string>
+    <string name="text_information">You will find several functions in this application:\\n\\n1 Currency: Gives the currency of the target country.\\n\\n2 Rate: Gives the conversion rate between two currencies.\\n\\n3 Convert: Convert an amount from one currency to another.\\n\\n4 Bureau de change: Gives the geolocation of the bureau de change of a city.</string>
+    <string name="button_inforamtion">List of conversions already made</string>
+    <string name="montant">Amount:</string>
+    <string name="button_convert">Convert</string>
+    <string name="montantConverti">Amount after conversion</string>
+    <string name="DeviseBouton">Search</string>
+    <string name="DeviseAffichage">Motto</string>
+</resources>

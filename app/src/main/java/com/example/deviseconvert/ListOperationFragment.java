@@ -49,19 +49,15 @@ public class ListOperationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_operation, container, false);
 
-        lectureBDD();
-  /*      adapt();
+        lectureBDD(view);
 
-        adapter.addAll("Abricot", "Brugnon", "Cerise", "Datte", "Figue", "Fraise", "Groseille", "Kiwi", "Mandarine", "Melon", "Myrtille", "Noix", "Olive", "Orange", "Pamplemousse", "Pêche", "Poire", "Pomme", "Prune", "Raisin");
+        //adapt(view);
 
-        ListView listView = view.findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-*/
         return view;
     }
-/*
-    void adapt(){
-        adapter = new ArrayAdapter<String>(this, R.layout.list_operation, R.id.textOperation) {
+
+    void adapt(View view){
+        adapter = new ArrayAdapter<String>(getContext(), R.layout.list_operation, R.id.textOperation) {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -74,12 +70,21 @@ public class ListOperationFragment extends Fragment {
                 data.setText(devicedata);
 
 
+
                 return view;
             }
         };
+
+
+        for(int i = 0; i < arrayDate.length; i++){
+            adapter.add(arrayInfo[i] + "\n"+arrayDate[i] );
+        }
+
+        ListView listView = view.findViewById(R.id.listView);
+        listView.setAdapter(adapter);
     }
-*/
-    void lectureBDD(){
+
+    void lectureBDD(View view){
         db.collection("users")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -108,10 +113,15 @@ public class ListOperationFragment extends Fragment {
 
                             arrayInfo = infoAll.split("#");
                             arrayDate = dateAll.split("#");
+
+                            Log.i("BDD", "Fin BDD");
+                            adapt(view);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
+
+
     }
 }

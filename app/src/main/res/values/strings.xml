@@ -22,7 +22,7 @@
         4 Bureau de change : Donne la géolocalistion des bureaux de change d'une ville."</string>
     <string name="button_inforamtion">Liste des conversions déjà effectué</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="montant">"Montant : "</string>
     <string name="button_convert">Convertir</string>
     <string name="montantConverti">Montant apres conversion</string>
