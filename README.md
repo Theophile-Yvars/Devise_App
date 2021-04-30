@@ -31,7 +31,15 @@ Ce menu présente les différentes actions possibles. L'utilisateur à le choix 
 <img src="https://user-images.githubusercontent.com/79571637/116746994-95348800-a9fd-11eb-93ed-ebdbe112330d.jpg" width="200">
 </p>
 
+## API
+
+Cette application utilise une API gratuite pour avoir toutes les informations sur les devises.
+Liens : https://www.currencyconverterapi.com/docs
+
 ## Taux 
+
+L'utilisateur pourra chercher le taux de conversion entre devise.
+Des requetes sont faites pour avoir les devises, puis le taux entre 2 devises.
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/79571637/116746986-94035b00-a9fd-11eb-89e8-2b97ea411fc9.jpg" width="200">
