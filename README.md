@@ -27,3 +27,8 @@ Ce menu présente les différentes actions possibles. L'utilisateur à le choix 
 
 ## Taux 
 
+## Devise
+
+## Bureaux de change
+
+## Conversion
