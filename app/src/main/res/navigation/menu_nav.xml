@@ -41,10 +41,10 @@
         <action
             android:id="@+id/action_menuFragment_to_informationFragment"
             app:destination="@id/informationFragment"
-            app:enterAnim="@anim/slide_in_rigth"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_rigth"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/deviceFragment"
