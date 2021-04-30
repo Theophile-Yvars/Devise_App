@@ -47,11 +47,15 @@ Des requetes sont faites pour avoir les devises, puis le taux entre 2 devises.
 
 ## Devise
 
+L'utilisateur pour trouver la devise d'un pays, en le selectionnant.
+
 <p align="center">
 <img src="https://user-images.githubusercontent.com/79571637/116746980-92399780-a9fd-11eb-8c64-5511de93be7a.jpg" width="200">
 </p>
 
 ## Bureaux de change
+
+En notant la ville dans l'nedroit prévu, une page google map s'ouvre sur la géolocalisation souhaité, pour fairte apparaitre tous les bureaux de change de la ville.
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/79571637/116746979-92399780-a9fd-11eb-9516-6a4b458ec20e.jpg" width="200">
@@ -59,6 +63,8 @@ Des requetes sont faites pour avoir les devises, puis le taux entre 2 devises.
 </p>
 
 ## Conversion
+
+En notant le montant souhaité avec les deux devises, aprés avoir cliqué sur le bouton convertir, l'application donne le montant converti dans le devise souhaité.
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/79571637/116746981-92d22e00-a9fd-11eb-8821-9c57631edc59.jpg" width="200">
