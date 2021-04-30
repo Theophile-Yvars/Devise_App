@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+/**
+ * Fragment de démarrage.
+ * L'utilsateur peut selectionner menu ou info dans la tool barre du haut
+ */
 public class MainFragment extends Fragment {
     public MainFragment() {
         // Required empty public constructor
@@ -25,6 +29,9 @@ public class MainFragment extends Fragment {
 
         Log.i("MainFragments","Initialisation");
 
+        /**
+         * Image bouton menu et information dans la tool barre
+         */
         ImageButton buttonMenu = view.findViewById(R.id.buttonMenu);
         ImageButton buttonInformation = view.findViewById(R.id.buttonInformation);
 

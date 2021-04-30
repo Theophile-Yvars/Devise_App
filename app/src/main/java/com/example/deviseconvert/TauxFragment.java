@@ -28,18 +28,67 @@ import java.util.Iterator;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ *  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ *  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀
+ */
+
+
+/**
+ *  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ * ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀
+ * ▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌
+ * ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌     ▐░▌
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌
+ * ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀      ▐░▌
+ * ▐░▌       ▐░▌▐░▌               ▐░▌
+ * ▐░▌       ▐░▌▐░▌           ▄▄▄▄█░█▄▄▄▄
+ * ▐░▌       ▐░▌▐░▌          ▐░░░░░░░░░░░▌
+ */
+
+/**
+ * API : https://www.currencyconverterapi.com/docs
+ */
+
+/**
+ *  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ *  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀
+ */
+
+/**
+ * Fragment pour trouver le taux entre deux devises
+ * Ce fragment est tres similaire au fragment convertion
+ */
 public class TauxFragment extends Fragment {
     String apiDevises = new String();
+    /**
+     * Cle de connection à l'API
+     */
     String key = "996cb33723dd35d455fb";
 
-    StringBuilder allDevise = new StringBuilder();
+    /**
+     * Variables
+     */
 
+    StringBuilder allDevise = new StringBuilder();
+    /**
+     * JSON
+     */
     String json;
     JSONObject file;
 
+    /**
+     * Spinner
+     */
     Spinner spinnerSource;
     Spinner spinnerDestination;
 
+    /**
+     * Varaible de recuperation
+     */
     int sourceIndice;
     int destinationIndice;
     float coeffFloat = -1;
@@ -61,15 +110,17 @@ public class TauxFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_taux, container, false);
 
         Button buttonConvert = view.findViewById(R.id.buttonTaux);
-
-
         output = view.findViewById(R.id.outputTaux);
+
+        /**
+         * Recherche si l'utilisateur à deja utiliser ce fragment
+         * Si oui, cette fonction cherche la donnée enregistré en mémoire interne dans l'application.
+         */
         loadData();
 
-         /*
-        déclaration du tableau d'item pour dans les spinner
+        /**
+         * Je recupere les devises sur l'API
          */
-
         AsyncTask<Void,Void,String> taskDevise = new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... voids) {
@@ -86,8 +137,9 @@ public class TauxFragment extends Fragment {
         };
         taskDevise.execute();
 
-
-
+        /**
+         * Je laisse 2 secondes pour que la recherche asynchrone des devises se finisse.
+         */
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -96,6 +148,10 @@ public class TauxFragment extends Fragment {
             }
         }, 2000);   //2 seconds
 
+        /**
+         * J'écoute le bouton conversion. Lorsqu'il est solicité, je cherche le taux de conversion.
+         * La conversion est une requette sur l'API pour recuperer le coefficiant de conversion entre les 2 devises.
+         */
         buttonConvert.setOnClickListener(v -> {
             AsyncTask<Void,Void,String> task = new AsyncTask<Void, Void, String>() {
                 @Override
@@ -117,6 +173,9 @@ public class TauxFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Fonction d'écoute des spinners.
+     */
     private void startSpinner() {
 
         // When user select a List-Item.
@@ -153,6 +212,10 @@ public class TauxFragment extends Fragment {
         });
     }
 
+    /**
+     * Fonction de requette sur l'API pour avoir le coeff entre deux devises.
+     * @return
+     */
     private String fetchAffichage() {
         String d = String.valueOf(allDevise);
         String[] array = d.split(" ");
@@ -195,6 +258,10 @@ public class TauxFragment extends Fragment {
         return null;
     }
 
+    /**
+     * initialisation de l'adapter pour les spinners
+     * @param v
+     */
     void adapterFunc(View v){
         String d = String.valueOf(allDevise);
         String[] array = d.split(" ");
@@ -212,21 +279,32 @@ public class TauxFragment extends Fragment {
         this.spinnerSource.setAdapter(adapter);
         this.spinnerDestination.setAdapter(adapter);
 
+        /**
+         * Fonction pour être à l'écoute des spinners.
+         */
         startSpinner();
     }
 
+    /**
+     * Fonction pour obtenir toutes les devises de l'API disponibles
+     * @return
+     */
     String fetchDevise() {
         try {
-            //target = "EUR";
-            //format = "THB";
-            //quantity = "12";
-
+            /**
+             * Format de la requette https à l'API, pour obtenir la liste des devises.
+             */
             apiDevises = "https://free.currconv.com/api/v7/currencies?apiKey="+key;
-
             URL url = new URL(apiDevises);
+
+            /**
+             * Ouvre un flux de donné avec l'API
+             */
             InputStream inputStream = url.openConnection().getInputStream();
             StringBuilder responseContent = new StringBuilder();
-            //StringBuilder test = new StringBuilder();
+            /**
+             * J'essaie de lire
+             */
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
                 String line;
                 line = reader.readLine(); // Je recupere un bloc String correspondant au JSON de l'API
@@ -253,7 +331,10 @@ public class TauxFragment extends Fragment {
         return null;
     }
 
-
+    /**
+     * Fonction qui cherche dans le stockage interne si l'utilisation a deja fait une conversion.
+     * Si oui, il affiche le resultat.
+     */
     public void loadData(){
         mContext = getContext();
         Log.i("DATA","load");
@@ -268,6 +349,9 @@ public class TauxFragment extends Fragment {
         }
     }
 
+    /**
+     * Lorsque le fragment est fini, il enregistre le montant de la conversion, si une conversion à bien était faite.
+     */
     @Override
     public void onStop() {
         super.onStop();

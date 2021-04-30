@@ -28,9 +28,18 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+/**
+ * Fragment pour lister les differents operations de conversion deja effectué
+ */
 public class ListOperationFragment extends Fragment {
+    /**
+     * Variable FireBase
+     */
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    /**
+     * Init
+     */
     String TAG = "BDD";
     StringBuilder recupData = new StringBuilder();
     StringBuilder recupInfo = new StringBuilder();
@@ -49,13 +58,18 @@ public class ListOperationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_operation, container, false);
 
+        /**
+         * Je recupere les datas
+         */
         lectureBDD(view);
-
-        //adapt(view);
 
         return view;
     }
 
+    /**
+     * adapter de la listView
+     * @param view
+     */
     void adapt(View view){
         adapter = new ArrayAdapter<String>(getContext(), R.layout.list_operation, R.id.textOperation) {
             @NonNull
@@ -75,7 +89,9 @@ public class ListOperationFragment extends Fragment {
             }
         };
 
-
+        /**
+         * Je push les datas recupere dans l'adapteur
+         */
         for(int i = 0; i < arrayDate.length; i++){
             adapter.add(arrayInfo[i] + "\n"+arrayDate[i] );
         }
@@ -84,6 +100,10 @@ public class ListOperationFragment extends Fragment {
         listView.setAdapter(adapter);
     }
 
+    /**
+     * Connection à FireBase pour recuperer les données
+     * @param view
+     */
     void lectureBDD(View view){
         db.collection("users")
                 .get()
@@ -91,26 +111,35 @@ public class ListOperationFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         Log.i("DBB","Recuperation data");
-                        Map<String, Object> data;
+                        Map<String, Object> data; // Format de recuperation
                         String inf;
                         String date;
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                data = document.getData();
+                                data = document.getData(); // Je recupere les données
                                 Log.d(TAG, document.getId() + " => " + data);
 
-                                inf = (String) data.get("info");
-                                date = (String) data.get("date");
+                                inf = (String) data.get("info"); // Je recupere avec la cle info
+                                date = (String) data.get("date"); // Je recupere avecla cle date
                                 Log.i("Info",inf);
                                 Log.i("Date",date);
 
+                                /**
+                                 * J'ajoute " # " pour pouvoir séparer les données plus tard dans un tableau
+                                 */
                                 recupInfo.append(inf + "#");
                                 recupData.append(date + "#");
                             }
 
+                            /**
+                             * Je converti les données pour mieux les manipuler
+                             */
                             String infoAll = String.valueOf(recupInfo);
                             String dateAll = String.valueOf(recupData);
 
+                            /**
+                             * Je transforme les données pour les mettre dans un tableau grace au séparateur " # "
+                             */
                             arrayInfo = infoAll.split("#");
                             arrayDate = dateAll.split("#");
 

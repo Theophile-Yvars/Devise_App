@@ -28,10 +28,49 @@ import java.util.Iterator;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ *  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ *  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀
+ */
+
+
+/**
+ *  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ * ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀
+ * ▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌
+ * ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌     ▐░▌
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌
+ * ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀      ▐░▌
+ * ▐░▌       ▐░▌▐░▌               ▐░▌
+ * ▐░▌       ▐░▌▐░▌           ▄▄▄▄█░█▄▄▄▄
+ * ▐░▌       ▐░▌▐░▌          ▐░░░░░░░░░░░▌
+ */
+
+/**
+ * API : https://www.currencyconverterapi.com/docs
+ */
+
+/**
+ *  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ *  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀
+ */
+
+/**
+ * Fragment pour obtenir une devise d'un pay.
+ */
 public class DeviceFragment extends Fragment {
     String apiDevises = new String();
+    /**
+     * Cle de connection à l'API
+     */
     String key = "996cb33723dd35d455fb";
 
+    /**
+     * Variables
+     */
     Spinner spinnerPay;
     String[] arrayDevice;
     String[] arrayCountry;
@@ -39,15 +78,26 @@ public class DeviceFragment extends Fragment {
     StringBuilder allDevise = new StringBuilder();
     StringBuilder allCountry = new StringBuilder();
 
+    /**
+     * JSON
+     */
     JSONObject file;
     String memoData = null;
 
+    /**
+     * Indice de selection de l'utilisateur dans le spinner
+     */
     int countryIndice;
 
+    /**
+     * affichage de la devise
+     */
     EditText output;
 
+    /**
+     * Variables pour sauvegarder avec sharedPreferences
+     */
     Context mContext;
-
     public static final String SHARED_PREFS = "sharedPrefs";
 
     public DeviceFragment() {
@@ -62,6 +112,9 @@ public class DeviceFragment extends Fragment {
         Button boutonRecherche = view.findViewById(R.id.buttonRecherche);
         output = view.findViewById(R.id.outputDevise);
 
+        /**
+         * Je recupere les devises sur l'API
+         */
         AsyncTask<Void,Void,String> taskDevise = new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... voids) {
@@ -78,9 +131,15 @@ public class DeviceFragment extends Fragment {
         };
         taskDevise.execute();
 
+        /**
+         * Je laisse 2 secondes pour que la recherche asynchrone des devises se finisse.
+         */
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
+                /**
+                 * Une fois les 2 secondes passé, je charge mes listViews pour que l'utilisateur vois les devises
+                 */
                 Log.i("Devise", String.valueOf(allDevise));
                 adapterFunc(view);
             }
@@ -93,11 +152,18 @@ public class DeviceFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Fonction d'affichage de la devise sur l'interface graphique
+     */
     private void affichage() {
         output.setText(arrayDevice[countryIndice]);
-        memoData = arrayDevice[countryIndice];
+        memoData = arrayDevice[countryIndice]; // memorise la valeur pour la sauvegarder en interne à la fin de l'utilisation
     }
 
+    /**
+     * Fonction d'initialisation du spinner
+     * @param v
+     */
     public void adapterFunc(View v) {
         String d = String.valueOf(allDevise);
         String c = String.valueOf(allCountry);
@@ -116,10 +182,19 @@ public class DeviceFragment extends Fragment {
 
         this.spinnerPay.setAdapter(adapter);
 
+        /**
+         * function d'écoute du spinner
+         */
         startSpinner();
+        /**
+         * Si une donnée est deja sauvegarder en mémoire interne, je la charge et je l'affiche
+         */
         loadData();
     }
 
+    /**
+     * Fonction d'écoute des spinners
+     */
     public void startSpinner() {
         // When user select a List-Item.
         this.spinnerPay.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -138,18 +213,26 @@ public class DeviceFragment extends Fragment {
         });
     }
 
+    /**
+     * Recupere les devises
+     * @return
+     */
     private String fetchDevise() {
         try {
-            //target = "EUR";
-            //format = "THB";
-            //quantity = "12";
-
+            /**
+             * Format de la requette https à l'API, pour obtenir la liste des devises.
+             */
             apiDevises = "https://free.currconv.com/api/v7/currencies?apiKey="+key;
-
             URL url = new URL(apiDevises);
+
+            /**
+             * Ouvre un flux de donné avec l'API
+             */
             InputStream inputStream = url.openConnection().getInputStream();
             StringBuilder responseContent = new StringBuilder();
-            //StringBuilder test = new StringBuilder();
+            /**
+             * J'essaie de lire
+             */
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
                 String line;
                 line = reader.readLine(); // Je recupere un bloc String correspondant au JSON de l'API
@@ -177,6 +260,10 @@ public class DeviceFragment extends Fragment {
         return null;
     }
 
+    /**
+     * Fonction qui cherche dans le stockage interne si l'utilisation a deja fait une conversion.
+     * Si oui, il affiche le resultat.
+     */
     public void loadData(){
         mContext = getContext();
         String val = null;
@@ -192,6 +279,9 @@ public class DeviceFragment extends Fragment {
         }
     }
 
+    /**
+     * Lorsque le fragment est fini, il enregistre le montant de la conversion, si une conversion à bien était faite.
+     */
     @Override
     public void onStop() {
         super.onStop();

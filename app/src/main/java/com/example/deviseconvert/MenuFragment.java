@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+/**
+ * Fragment de Menu
+ */
 public class MenuFragment extends Fragment {
     public MenuFragment() {
         // Required empty public constructor
@@ -23,10 +26,16 @@ public class MenuFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_menu, container, false);
 
+        /**
+         * Choix entre les travaux possible de l'application
+         */
         Button button1 = view.findViewById(R.id.button1Menu);
         Button button2 = view.findViewById(R.id.button2Menu);
         Button button3 = view.findViewById(R.id.button3Menu);
         Button button4 = view.findViewById(R.id.button4Menu);
+        /**
+         * L'utilisateur peut aussi acceder au fragment information à partir d'ici
+         */
         ImageButton buttonInformation = view.findViewById(R.id.buttonInformation);
 
         button1.setOnClickListener(v -> {

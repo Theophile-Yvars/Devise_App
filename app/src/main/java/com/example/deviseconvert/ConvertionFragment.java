@@ -40,38 +40,88 @@ import android.content.Context;
 
 import static android.content.Context.MODE_PRIVATE;
 
-
-/*
-API : https://www.currencyconverterapi.com/docs
+/**
+ *  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ *  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀
  */
 
+
+/**
+ *  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ * ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀
+ * ▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌
+ * ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌     ▐░▌
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌
+ * ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀      ▐░▌
+ * ▐░▌       ▐░▌▐░▌               ▐░▌
+ * ▐░▌       ▐░▌▐░▌           ▄▄▄▄█░█▄▄▄▄
+ * ▐░▌       ▐░▌▐░▌          ▐░░░░░░░░░░░▌
+ */
+
+/**
+ * API : https://www.currencyconverterapi.com/docs
+ */
+
+/**
+ *  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄
+ * ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+ *  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀
+ */
+
+/**
+ * Ce fragment gére la conversion d'un montant d'une devise, à une autre.
+ */
 public class ConvertionFragment extends Fragment implements Serializable {
-    String apiDevises = new String();
+    /**
+     * Ma CLE pour me servir de l'API.
+     * Génération de cle gratuite
+     */
     String key = "996cb33723dd35d455fb";
 
-    StringBuilder allDevise = new StringBuilder();
+    /**
+     * Variables
+     */
+    String apiDevises = new String(); // futur url
+    StringBuilder allDevise = new StringBuilder(); // recupere les valeurs
 
-    String json;
-    JSONObject file;
+    JSONObject file; // Le fichier json de la reponse de la requete à l'API
 
+    /**
+     * Spinner pour faire voir les differents choix
+     */
     Spinner spinnerSource;
     Spinner spinnerDestination;
 
+    /**
+     * Recupere l'inforation dans le choix du spinner et regarde la valeur associé dans un tableau
+     * Recupere le coeff du la conversion aussi
+     */
     int sourceIndice;
     int destinationIndice;
     float coeffFloat;
 
+    /**
+     * EditText
+     */
     EditText input;
     EditText output;
 
+    /**
+     * Stock le resultat de la conversion
+     */
     float resultat;
 
-    String convertSerialise = "ficConvert";
-
+    /**
+     * Base de bonnée : FireBase
+     */
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    /**
+     * Variables pour sauvegarder avec sharedPreferences
+     */
     public static final String SHARED_PREFS = "sharedPrefs";
-
     private Context mContext;
 
     public ConvertionFragment() {
@@ -84,24 +134,23 @@ public class ConvertionFragment extends Fragment implements Serializable {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_convertion, container, false);
 
+        /**
+         * Initialisation
+         */
+
         Button buttonConvert = view.findViewById(R.id.buttonTaux);
 
         input = view.findViewById(R.id.inputMontant);
         output = view.findViewById(R.id.outputTaux);
 
+        /**
+         * Si donnée stocké en intern, j'affiche
+         */
         loadData();
 
-        /*
-        if(Serializer.deserialize(convertSerialise,getContext()) != null){
-            resultat = (float)Serializer.deserialize(convertSerialise,getContext());
-            output.setText(String.valueOf(resultat));
-        }
-        */
-
-         /*
-        déclaration du tableau d'item pour dans les spinner
+        /**
+         * Je recupere les devises disponible sur l'API, pour que l'utilisateur puisse choisir ces devises de conversion
          */
-
         AsyncTask<Void,Void,String> taskDevise = new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... voids) {
@@ -119,20 +168,29 @@ public class ConvertionFragment extends Fragment implements Serializable {
         taskDevise.execute();
 
 
-
+        /**
+         * Je laisse 2 secondes pour que la recherche asynchrone des devises se finisse.
+         */
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
+                /**
+                 * Une fois les 2 secondes passé, je charge mes listViews pour que l'utilisateur vois les devises
+                 */
                 Log.i("Devise", String.valueOf(allDevise));
                 adapterFunc(view);
             }
         }, 2000);   //2 seconds
 
+        /**
+         * J'écoute le bouton conversion. Lorsqu'il est solicité, je converti.
+         * La conversion est une requette sur l'API pour recuperer le coefficiant de conversion entre les 2 devises.
+         */
         buttonConvert.setOnClickListener(v -> {
             AsyncTask<Void,Void,String> task = new AsyncTask<Void, Void, String>() {
                 @Override
                 protected String doInBackground(Void... voids) {
-                    return fetchAffichage();
+                    return fetchAffichage(); // Recherche est affichage du coeff.
                 }
                 @Override
                 protected void onPostExecute(String responseContent) {
@@ -149,6 +207,9 @@ public class ConvertionFragment extends Fragment implements Serializable {
         return view;
     }
 
+    /**
+     * Fonction d'écoute des spinners.
+     */
     private void startSpinner() {
 
         // When user select a List-Item.
@@ -185,6 +246,10 @@ public class ConvertionFragment extends Fragment implements Serializable {
         });
     }
 
+    /**
+     * Fonction de requette sur l'API pour avoir le coeff entre deux devises.
+     * @return
+     */
     private String fetchAffichage() {
         String d = String.valueOf(allDevise);
         String[] array = d.split(" ");
@@ -193,14 +258,22 @@ public class ConvertionFragment extends Fragment implements Serializable {
         String deviseDestination = array[destinationIndice];
         String coeff;
 
+        /**
+         * url de requette pour avoir le coeff
+         */
         apiDevises = "https://free.currconv.com/api/v7/convert?apiKey=" + key +"&q="+deviseSource+"_"+deviseDestination+"&compact=y";
         //https://free.currconv.com/api/v7/convert?apiKey=do-not-use-this-key&q=USD_PHP&compact=y
         Log.i("Resquet",apiDevises);
+        /**
+         * J'essaie de me connecter
+         */
         try{
-            URL url = new URL(apiDevises);
-            InputStream inputStream = url.openConnection().getInputStream();
-            StringBuilder responseContent = new StringBuilder();
-            //StringBuilder test = new StringBuilder();
+            URL url = new URL(apiDevises); // url
+            InputStream inputStream = url.openConnection().getInputStream(); // ouverture d'un flux
+            StringBuilder responseContent = new StringBuilder(); // recuperer plusieur objet de type String
+            /**
+             * J'essaie de lire les informations recu
+             */
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
                 String line;
                 line = reader.readLine(); // Je recupere un bloc String correspondant au JSON de l'API
@@ -208,13 +281,19 @@ public class ConvertionFragment extends Fragment implements Serializable {
             }
             Log.i("Conversion", "Messages = \n" + file);
 
+            /**
+             * Je formate dans un type Json. Ca sera plus pratique à manipuler
+             */
             JSONObject test = file.getJSONObject(deviseSource+"_"+deviseDestination); // Je recupere le Json dans la cle results. Ce qui correspond à toutes les valeurs.
-            coeff = test.getString("val");
+            coeff = test.getString("val"); // je cherche la valeur dont l'ID est val
 
             Log.i("val",coeff);
-            coeffFloat = Float.parseFloat(coeff);
+            coeffFloat = Float.parseFloat(coeff); // J'ai mon coeff !
             Log.i("Float", String.valueOf(coeffFloat));
 
+            /**
+             * calcul grace au coeff obtenu
+             */
             convert(deviseDestination,deviseSource,coeffFloat);
 
         } catch (Exception e) {
@@ -226,6 +305,10 @@ public class ConvertionFragment extends Fragment implements Serializable {
         return null;
     }
 
+    /**
+     * initialisation de l'adapter pour les spinners
+     * @param v
+     */
     void adapterFunc(View v){
         String d = String.valueOf(allDevise);
         String[] array = d.split(" ");
@@ -243,9 +326,18 @@ public class ConvertionFragment extends Fragment implements Serializable {
         this.spinnerSource.setAdapter(adapter);
         this.spinnerDestination.setAdapter(adapter);
 
+        /**
+         * Fonction pour être à l'écoute des spinners.
+         */
         startSpinner();
     }
 
+    /**
+     * Fonction de conversion en tre deux devises, et avec le coefficiant
+     * @param affichageDestination
+     * @param afiichageSource
+     * @param coeffFloat
+     */
     void convert(String affichageDestination, String afiichageSource, float coeffFloat){
         try{
              /*
@@ -257,10 +349,19 @@ public class ConvertionFragment extends Fragment implements Serializable {
              */
             final float inputValue = Float.parseFloat(inputStr);
 
+            /**
+             * Calcul
+             */
             resultat = this.coeffFloat * inputValue;
 
+            /**
+             * Affichage
+             */
             output.setText(String.valueOf(resultat) + " " + affichageDestination);
 
+            /**
+             * J'enregistre ma convertion dans FireBase
+             */
             bdd(affichageDestination,afiichageSource,resultat,inputValue);
 
         } catch(Exception e){
@@ -268,28 +369,45 @@ public class ConvertionFragment extends Fragment implements Serializable {
         }
     }
 
+    /**
+     * Sauvegarde des données de conversion dans FireBase
+     * @param affichageDestination
+     * @param afiichageSource
+     * @param resultat
+     * @param inputValue
+     */
     private void bdd(String affichageDestination, String afiichageSource, float resultat,float inputValue) {
         // Create a new user with a first and last name
 
+        /**
+         * Je recupere la date pour la sauvegarder aussi
+         */
         Date now = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/YYYY HH:mm");
         String resultDate = formatter.format(now);
 
+        /**
+         * Format de sauvegarde des données de conversion
+         */
         String stockage = String.valueOf(inputValue) + " " + afiichageSource + " -> " + affichageDestination + " : " + String.valueOf(resultat);
 
+        /**
+         * HashMap, format dans lequel sera sauvegarder les données dans FireBase
+         */
         HashMap<String, Object> user = new HashMap<>();
         //user.put("info", stockage + " : " + resultDate);
         user.put("info", stockage);
         user.put("date", resultDate);
 
-
         String TAG = "BDD";
-
         Log.i(TAG,"Enregistremenent");
 
-// Add a new document with a generated ID
+        /**
+         * Connection a FireBase, et sauvegarde
+         */
+        // Add a new document with a generated ID
         db.collection("users")
-                .add(user)
+                .add(user)// ajout les data de users
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -305,21 +423,25 @@ public class ConvertionFragment extends Fragment implements Serializable {
     }
 
     /**
-     *
+     * Fonction pour obtenir toutes les devises de l'API disponibles
      * @return
      */
     String fetchDevise() {
         try {
-            //target = "EUR";
-            //format = "THB";
-            //quantity = "12";
-
+            /**
+             * Format de la requette https à l'API, pour obtenir la liste des devises.
+             */
             apiDevises = "https://free.currconv.com/api/v7/currencies?apiKey="+key;
-
             URL url = new URL(apiDevises);
+
+            /**
+             * Ouvre un flux de donné avec l'API
+             */
             InputStream inputStream = url.openConnection().getInputStream();
             StringBuilder responseContent = new StringBuilder();
-            //StringBuilder test = new StringBuilder();
+            /**
+             * J'essaie de lire
+             */
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
                 String line;
                 line = reader.readLine(); // Je recupere un bloc String correspondant au JSON de l'API
@@ -346,6 +468,10 @@ public class ConvertionFragment extends Fragment implements Serializable {
         return null;
     }
 
+    /**
+     * Fonction qui cherche dans le stockage interne si l'utilisation a deja fait une conversion.
+     * Si oui, il affiche le resultat.
+     */
     public void loadData(){
         mContext = getContext();
         try {
@@ -358,6 +484,9 @@ public class ConvertionFragment extends Fragment implements Serializable {
         }
     }
 
+    /**
+     * Lorsque le fragment est fini, il enregistre le montant de la conversion, si une conversion à bien était faite.
+     */
     @Override
     public void onStop() {
         super.onStop();
