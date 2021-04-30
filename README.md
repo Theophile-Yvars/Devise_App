@@ -32,3 +32,13 @@ Ce menu présente les différentes actions possibles. L'utilisateur à le choix 
 ## Bureaux de change
 
 ## Conversion
+
+
+## Réalisation
+-----
+Théophile Yvars : Etudiant de L3 Informatique à l'UPVD. 2021
+
+
+
+## Amélioration
+-----
