@@ -33,12 +33,28 @@ Ce menu présente les différentes actions possibles. L'utilisateur à le choix 
 
 ## Taux 
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/79571637/116746986-94035b00-a9fd-11eb-89e8-2b97ea411fc9.jpg" width="200">
+</p>
+
 ## Devise
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/79571637/116746980-92399780-a9fd-11eb-8c64-5511de93be7a.jpg" width="200">
+</p>
 
 ## Bureaux de change
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/79571637/116746979-92399780-a9fd-11eb-9516-6a4b458ec20e.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/79571637/116746975-91086a80-a9fd-11eb-9339-61b2d383d30b.jpg" width="200">
+</p>
+
 ## Conversion
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/79571637/116746981-92d22e00-a9fd-11eb-8821-9c57631edc59.jpg" width="200">
+</p>
 
 ## Réalisation
 -----
