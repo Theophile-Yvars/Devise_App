@@ -78,3 +78,4 @@ Théophile Yvars : Etudiant de L3 Informatique à l'UPVD. 2021
 
 ## Amélioration
 -----
+Tool bar du haut mal formaté. 
