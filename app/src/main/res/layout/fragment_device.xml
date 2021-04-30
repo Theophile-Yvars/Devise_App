@@ -10,6 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:text="@string/QuestionDevise"
+            android:textColor="@color/teal_700"
+            android:textSize="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
@@ -33,11 +50,11 @@
             <EditText
                 android:id="@+id/outputDevise"
                 android:layout_width="0dp"
-                android:gravity="center"
                 android:layout_height="match_parent"
-                android:inputType="text"
                 android:layout_weight="1"
-                android:hint="@string/DeviseAffichage"/>
+                android:gravity="center"
+                android:hint="@string/DeviseAffichage"
+                android:inputType="text" />
 
         </LinearLayout>
 
@@ -45,11 +62,12 @@
             android:id="@+id/buttonRecherche"
             android:layout_width="188dp"
             android:layout_height="90dp"
-            android:textSize="20dp"
             android:layout_marginTop="100dp"
             android:text="@string/DeviseBouton"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -93,7 +93,7 @@
         <Button
             android:id="@+id/buttonInformationOperation"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:layout_marginTop="50dp"
             android:text="@string/button_inforamtion"
             app:layout_constraintEnd_toEndOf="parent"

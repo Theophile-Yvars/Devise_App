@@ -19,4 +19,9 @@
     <string name="montantConverti">Amount after conversion</string>
     <string name="DeviseBouton">Search</string>
     <string name="DeviseAffichage">Motto</string>
+    <string name="QuestionDevise">Select the country</string>
+    <string name="QuestionConvertionMontant">Indicate the amount</string>
+    <string name="QuestionConvertionDevise">Select currencies</string>
+    <string name="QuestionTaux">Select currencies</string>
+    <string name="button_recherche_Taux">Search</string>
 </resources>

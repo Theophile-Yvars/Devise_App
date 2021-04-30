@@ -28,5 +28,10 @@
     <string name="montantConverti">Montant apres conversion</string>
     <string name="DeviseBouton">Rechercher</string>
     <string name="DeviseAffichage">Devise</string>
+    <string name="QuestionDevise">Selectionner le pays</string>
+    <string name="QuestionConvertionMontant">Indiquer le montant</string>
+    <string name="QuestionConvertionDevise">Selectionner les devises</string>
+    <string name="QuestionTaux">Selectionner les devises</string>
+    <string name="button_recherche_Taux">Recherche</string>
 
 </resources>
