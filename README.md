@@ -10,14 +10,20 @@ Elle aide les utilisateurs à convertir un montant dans une devise dans une autr
 ## Information
 
 L'utilisateur peut visualiser la composition de l'application. Il aura un visuel sur les différentes compositions de l'application. 
+Il pourra aussi en cliquant sur le bouton du bas, observer toutes les conversions qu'il a déjà effectuer.
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/79571637/116746990-949bf180-a9fd-11eb-9281-e73543157148.jpg" width="200">
 <img src="https://user-images.githubusercontent.com/79571637/116746983-936ac480-a9fd-11eb-8973-dd5a77db401d.jpg" width="200">
 </p>
 
-Il pourra aussi en cliquant sur le bouton du bas, observer toutes les conversions qu'il a déjà effectuer.
+## Menu
+
+Ce menu présente les différentes actions possibles. L'utilisateur à le choix entre 4 actions possibles. Il peut aussi accéder aux informations présenter dans le sous chapitre précedant.
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/79571637/116746983-936ac480-a9fd-11eb-8973-dd5a77db401d.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/79571637/116746994-95348800-a9fd-11eb-93ed-ebdbe112330d.jpg" width="200">
 </p>
+
+## Taux 
+
