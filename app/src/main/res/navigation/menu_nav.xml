@@ -40,7 +40,11 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_menuFragment_to_informationFragment"
-            app:destination="@id/informationFragment" />
+            app:destination="@id/informationFragment"
+            app:enterAnim="@anim/slide_in_rigth"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/deviceFragment"
@@ -69,7 +73,11 @@
         tools:layout="@layout/fragment_information" >
         <action
             android:id="@+id/action_informationFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            app:destination="@id/menuFragment"
+            app:enterAnim="@anim/slide_in_rigth"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_informationFragment_to_listOperationFragment"
             app:destination="@id/listOperationFragment"
